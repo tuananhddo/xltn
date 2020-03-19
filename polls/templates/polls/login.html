@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "polls/css/login.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'polls/css/base/bootstrap.min.css' %}" type="text/css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="top">
+            <div class="title">
+                Xử Lý Tiếng Nói
+            </div>
+        </div>
+
+        <div class="mid">
+            <div class="content">
+                <iframe
+                        id="frameSrc"
+                        width="600"
+                        height="400">
+                </iframe>
+                <button  class="btn btn-success" id="startContent">Bắt đầu bài ghi</button>
+                <button  class="btn btn-warning" id="nextContent" disabled>Chuyển bài ghi</button>
+            </div>
+            <button class="btn btn-success" id='record'>Ghi âm</button>
+            <button class="btn btn-danger" id='stopRecord' disabled>Dừng ghi</button>
+            <button class="btn btn-info" id='refreshRecord'>Ghi lại</button>
+            <p id="loading" style="display: none">Listenning ...</p>
+            <p id="loading2" style="display: none">Vui lòng đơi chút ...</p>
+
+
+
+        </div>
+        <div class="bot">
+
+        </div>
+    </div>
+    {% load static %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src={% static 'polls/js/index.js' %}></script>
+
+</body>
+</html>
