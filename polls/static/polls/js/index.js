@@ -7,35 +7,25 @@ const loading2 = document.getElementById('loading2');
 
 var loaderCounter = 1;
 const referLink = [
-    "https://vnexpress.net/suc-khoe/them-mot-nguoi-ninh-thuan-nhiem-ncov-4071034.html",
-    "https://vnexpress.net/phap-luat/vua-lay-vo-co-duoc-hoan-nhap-ngu-4070530.html",
-    "https://vnexpress.net/kinh-doanh/khu-vuc-dong-euro-cham-chap-truoc-phep-thu-covid-19-4071457.html",
-    "https://vnexpress.net/kinh-doanh/shopee-lazada-kho-thong-tri-thuong-mai-dien-tu-viet-nam-4066226.html",
-    "https://vnexpress.net/kinh-doanh/doanh-nghiep-noi-sieu-giam-gia-ngay-black-friday-3318492.html",
-    'https://vnexpress.net/kinh-doanh/mua-sam-hang-ngoai-qua-mang-sao-cho-an-toan-3832532.html',
-    'https://vnexpress.net/kinh-doanh/vnexpress-ra-mat-khoa-hoc-ve-thuong-mai-dien-tu-3995346.html',
-    "https://vnexpress.net/suc-khoe/them-mot-nguoi-ninh-thuan-nhiem-ncov-4071034.html",
-    "https://vnexpress.net/phap-luat/vua-lay-vo-co-duoc-hoan-nhap-ngu-4070530.html",
-    "https://vnexpress.net/kinh-doanh/khu-vuc-dong-euro-cham-chap-truoc-phep-thu-covid-19-4071457.html",
-    "https://vnexpress.net/kinh-doanh/shopee-lazada-kho-thong-tri-thuong-mai-dien-tu-viet-nam-4066226.html",
-    "https://vnexpress.net/kinh-doanh/doanh-nghiep-noi-sieu-giam-gia-ngay-black-friday-3318492.html",
-    'https://vnexpress.net/kinh-doanh/mua-sam-hang-ngoai-qua-mang-sao-cho-an-toan-3832532.html',
-    'https://vnexpress.net/kinh-doanh/vnexpress-ra-mat-khoa-hoc-ve-thuong-mai-dien-tu-3995346.html',
-    "https://vnexpress.net/kinh-doanh/shopee-lazada-kho-thong-tri-thuong-mai-dien-tu-viet-nam-4066226.html",
-    "https://vnexpress.net/kinh-doanh/doanh-nghiep-noi-sieu-giam-gia-ngay-black-friday-3318492.html",
-    'https://vnexpress.net/kinh-doanh/mua-sam-hang-ngoai-qua-mang-sao-cho-an-toan-3832532.html',
-    'https://vnexpress.net/kinh-doanh/vnexpress-ra-mat-khoa-hoc-ve-thuong-mai-dien-tu-3995346.html',
-    "https://vnexpress.net/suc-khoe/them-mot-nguoi-ninh-thuan-nhiem-ncov-4071034.html",
-    "https://vnexpress.net/phap-luat/vua-lay-vo-co-duoc-hoan-nhap-ngu-4070530.html",
-    "https://vnexpress.net/kinh-doanh/khu-vuc-dong-euro-cham-chap-truoc-phep-thu-covid-19-4071457.html",
-    "https://vnexpress.net/kinh-doanh/shopee-lazada-kho-thong-tri-thuong-mai-dien-tu-viet-nam-4066226.html",
-    "https://vnexpress.net/kinh-doanh/doanh-nghiep-noi-sieu-giam-gia-ngay-black-friday-3318492.html",
-    'https://vnexpress.net/kinh-doanh/mua-sam-hang-ngoai-qua-mang-sao-cho-an-toan-3832532.html',
-    'https://vnexpress.net/kinh-doanh/vnexpress-ra-mat-khoa-hoc-ve-thuong-mai-dien-tu-3995346.html'
-
+    'https://vnexpress.net/thoi-su/hang-loat-cua-hang-dong-cua-4075213.html',
+    'https://vnexpress.net/goc-nhin/nhung-bai-hoc-thoi-chien-4073192.html',
+    'https://vnexpress.net/the-gioi/ca-nhiem-ncov-o-indonesia-tang-len-gan-900-4075255.html',
+    'https://vnexpress.net/kinh-doanh/det-may-co-the-thiet-hai-11-000-ty-dong-vi-covid-19-4074994.html',
+    'https://vnexpress.net/giai-tri/quyen-linh-thu-hoach-rau-trai-vuon-nha-4075064.html',
+    'https://vnexpress.net/the-thao/giai-co-vua-candidates-dung-thi-dau-4075217.html',
+    'https://vnexpress.net/phap-luat/de-xuat-tang-gap-doi-hinh-phat-voi-toi-pham-trong-covid-19-4074818.html',
+    'https://vnexpress.net/giao-duc/giao-vien-nghi-khong-luong-duoc-ho-tro-4075039.html',
+    'https://vnexpress.net/suc-khoe/chang-trai-nhiem-ncov-hong-toi-dau-rat-nhu-lua-dot-4075126.html',
+    'https://vnexpress.net/doi-song/nhung-dam-tang-buon-o-italy-4075245.html',
+    'https://vnexpress.net/du-lich/dau-bep-sushi-tuc-gian-vi-ncov-4074711.html',
+    'https://vnexpress.net/khoa-hoc/dap-thuy-dien-song-mekong-khien-gdp-viet-nam-giam-0-3-4075131.html',
+    'https://vnexpress.net/so-hoa/netflix-bi-sap-o-chau-au-va-bac-my-4075020.html',
+    'https://vnexpress.net/oto-xe-may/oto-dua-nhau-giam-gia-hang-tram-trieu-dong-4074992.html',
+    'https://vnexpress.net/y-kien/toi-o-nha-an-toan-voi-bua-sang-tu-na-u-mua-covid-4075203.html',
+    'https://vnexpress.net/tam-su/yeu-2-nam-moi-biet-anh-co-vo-con-4074949.html'
 ];
-var dirNumber = 0;
-var fileNumber = 0;
+var dirNumber = 15;
+var fileNumber = 38;
 
 $(document).ready(function () {
     //csrf_token
@@ -65,18 +55,21 @@ $(document).ready(function () {
     });
 
     $('#startContent').click(function () {
-        $('#frameSrc').attr('src', referLink[dirNumber]);
+        // $('#frameSrc').attr('src', referLink[dirNumber]);
         $('#nextContent').prop('disabled', false);
         if(loaderCounter == 1) {
             sendCrawlData();
             loaderCounter --;
         }
+        getData(dirNumber)
 
     })
     $('#nextContent').click(function () {
         dirNumber++;
-        $('#frameSrc').attr('src', referLink[dirNumber]);
+        fileNumber = 0;
+        // $('#frameSrc').attr('src', referLink[dirNumber]);
         $('#startContent').prop('disabled', true);
+        getData(dirNumber)
     })
 
 });
@@ -89,10 +82,10 @@ const handleSuccess = function (stream) {
         audioChunks.push(e.data);
         if (recorder.state == "inactive") {
             let blob = new Blob(audioChunks, {type: 'audio/wav'});
-            // recordedAudio.src = URL.createObjectURL(blob);
-            // recordedAudio.controls = true;
-            // recordedAudio.autoplay = true;
-            goodRecord && sendData(blob);
+            if(goodRecord == false){
+                return;
+            }
+            sendData(blob);
             fileNumber++;
         }
     }
@@ -111,16 +104,25 @@ const handleSuccess = function (stream) {
         recorder.stop();
     };
     refreshRecord.onclick = e => {
+        goodRecord = false;
         record.disabled = false;
         stopRecord.disabled = true;
         loading.style.display = "none";
-        goodRecord = false;
         // recorder.pause();
         // audioChunks = [];
         recorder.stop();
     };
 };
-
+function getData(id) {
+    $.ajax({
+        type: 'GET',
+        url: '/get/'+id,
+    }).done(function (data) {
+        text = ""
+        data.forEach(item => text+= item + '\n');
+        $('#x').val(text);
+    });
+}
 function sendData(data) {
     var fd = new FormData();
     fd.append('fname', fileNumber);

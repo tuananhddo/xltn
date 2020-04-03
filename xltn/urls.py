@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeController.index),
     path('upload',HomeController.upload),
-    path('crawl', HomeController.crawl_express_list)
+    path('crawl', HomeController.crawl_express_list),
+    path('get/<str:id>', HomeController.indexGetText),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
