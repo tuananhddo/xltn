@@ -9,30 +9,38 @@ from bs4 import BeautifulSoup
 from polls.forms import UploadFileForm
 import requests
 
+import polls.newsLinkCrawler as crw
+import polls.newsDataCrawler as crwd
+
+from django.views.decorators.csrf import csrf_exempt
+
 def index(request):
     return render(request, 'polls/login.html')
-def indexGetText(request,id):
+
+
+def indexGetText(request, id):
     data = ""
     dir_name = 'postNumber' + id
-    my_dir_path = os.path.join(settings.MEDIA_ROOT,dir_name)
+    my_dir_path = os.path.join(settings.MEDIA_ROOT, dir_name)
     with open(os.path.join(my_dir_path, dir_name + "_data.txt"), 'rb+') as file:
         data_text = file.readlines()
         stringlist = [x.decode('utf-8') for x in data_text]
     # stringlist = '.'.join(stringlist)
-    return JsonResponse(stringlist,safe=False)
+    return JsonResponse(stringlist, safe=False)
+
 
 def upload(request):
     if request.method == 'POST':
         dir_name = request.POST.get('dirName')
         links = request.POST.get('link')
-        handle_uploaded_file(request.FILES.get('data'),request.POST.get('fname'),dir_name,links)
+        handle_uploaded_file(request.FILES.get('data'), request.POST.get('fname'), dir_name, links)
         return HttpResponse("OK")
     return HttpResponse('NOT OK')
 
 
-def handle_uploaded_file(f,name,dir_name,links):
+def handle_uploaded_file(f, name, dir_name, links):
     file_name = 'sentence' + name
-    my_dir_path = os.path.join(settings.MEDIA_ROOT,dir_name)
+    my_dir_path = os.path.join(settings.MEDIA_ROOT, dir_name)
     if not os.path.isdir(my_dir_path):
         os.mkdir(my_dir_path)
         folderDesFile = open(os.path.join(my_dir_path, dir_name + ".txt"), 'w+')
@@ -51,7 +59,7 @@ def handle_uploaded_file(f,name,dir_name,links):
         if index == int(name):
             my_line = i.decode('utf8')
             break
-        index+=1
+        index += 1
     crawlDataFile.close()
     desFile.write((file_name + ".wav" + "\n" + my_line).encode('utf8'))
     desFile.close()
@@ -90,15 +98,49 @@ def crawl_express_list(request):
 
 def parseSpace(textData):
     re.sub('\s+', ' ', textData)
-    textData = textData.replace('\s', "")
-    textData = textData.replace('\n', "")
-    textData = textData.replace('\t', "")
-    textData = textData.replace(":", ".")
-    textData = textData.replace(";", ".")
-    textData = textData.replace("?", ".")
-    textData = textData.replace("!", ".")
+    textData = textData.replace('\s', " ")
+    textData = textData.replace('\n', " ")
+    textData = textData.replace('\t', " ")
+    textData = textData.replace(":", " ")
+    textData = textData.replace(";", " ")
+    textData = textData.replace("?", " ")
+    textData = textData.replace("!", " ")
     return textData
 
 
+def search(request):  # q = a
+    # print()
+    key = request.GET['q']
+    l1 = crw.crawlLinkFromVnexpress(key)
+    l2 = crw.crawlLinkFromZing(key)
+    l3 = crw.crawlLinkFromBaomoi(key)
+    l4 = crw.crawlLinkFromSoha(key)
 
+    # textData = soup.body.article.text
+    # textData = parseSpace(textData)
+    l = l1 + l2 + l3 + l4
+    l2 = []
+    for x in l:
+        l2.append({'name': x, 'link': x})
+    return JsonResponse(l2, safe=False)
 
+def crawDataFromLink(link):
+    if 'soha.vn' in link:
+        print('Soha data')
+        return crwd.crawlDataFromSoha(link)
+    if 'zingnews.vn' in link:
+        print('Zing data')
+        return crwd.crawlDataFromZing(link)
+
+@csrf_exempt
+def crawlPost(request):
+    link = request.POST.get('link')
+    textData = crawDataFromLink(link)
+    # textData = soup.body.article.text
+    # textData = parseSpace(textData)
+
+    # description = soup.select_one('body > section.container section p.description')
+    # if description is not None:
+    #     descriptionData = parseSpace(description.text)
+    #     textData = descriptionData + textData
+    return JsonResponse({'data': textData}, safe=False)

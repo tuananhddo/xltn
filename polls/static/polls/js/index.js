@@ -9,23 +9,10 @@ var loaderCounter = 1;
 const referLink = [
     'https://vnexpress.net/thoi-su/hang-loat-cua-hang-dong-cua-4075213.html',
     'https://vnexpress.net/goc-nhin/nhung-bai-hoc-thoi-chien-4073192.html',
-    'https://vnexpress.net/the-gioi/ca-nhiem-ncov-o-indonesia-tang-len-gan-900-4075255.html',
-    'https://vnexpress.net/kinh-doanh/det-may-co-the-thiet-hai-11-000-ty-dong-vi-covid-19-4074994.html',
-    'https://vnexpress.net/giai-tri/quyen-linh-thu-hoach-rau-trai-vuon-nha-4075064.html',
-    'https://vnexpress.net/the-thao/giai-co-vua-candidates-dung-thi-dau-4075217.html',
-    'https://vnexpress.net/phap-luat/de-xuat-tang-gap-doi-hinh-phat-voi-toi-pham-trong-covid-19-4074818.html',
-    'https://vnexpress.net/giao-duc/giao-vien-nghi-khong-luong-duoc-ho-tro-4075039.html',
     'https://vnexpress.net/suc-khoe/chang-trai-nhiem-ncov-hong-toi-dau-rat-nhu-lua-dot-4075126.html',
-    'https://vnexpress.net/doi-song/nhung-dam-tang-buon-o-italy-4075245.html',
-    'https://vnexpress.net/du-lich/dau-bep-sushi-tuc-gian-vi-ncov-4074711.html',
-    'https://vnexpress.net/khoa-hoc/dap-thuy-dien-song-mekong-khien-gdp-viet-nam-giam-0-3-4075131.html',
-    'https://vnexpress.net/so-hoa/netflix-bi-sap-o-chau-au-va-bac-my-4075020.html',
-    'https://vnexpress.net/oto-xe-may/oto-dua-nhau-giam-gia-hang-tram-trieu-dong-4074992.html',
-    'https://vnexpress.net/y-kien/toi-o-nha-an-toan-voi-bua-sang-tu-na-u-mua-covid-4075203.html',
-    'https://vnexpress.net/tam-su/yeu-2-nam-moi-biet-anh-co-vo-con-4074949.html'
 ];
-var dirNumber = 15;
-var fileNumber = 38;
+var dirNumber = 0;
+var fileNumber = 0;
 
 $(document).ready(function () {
     //csrf_token
@@ -55,7 +42,6 @@ $(document).ready(function () {
     });
 
     $('#startContent').click(function () {
-        // $('#frameSrc').attr('src', referLink[dirNumber]);
         $('#nextContent').prop('disabled', false);
         if(loaderCounter == 1) {
             sendCrawlData();
@@ -108,8 +94,6 @@ const handleSuccess = function (stream) {
         record.disabled = false;
         stopRecord.disabled = true;
         loading.style.display = "none";
-        // recorder.pause();
-        // audioChunks = [];
         recorder.stop();
     };
 };
