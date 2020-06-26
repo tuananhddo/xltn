@@ -1,1 +1,1 @@
-web: gunicorn flutter_data_api.wsgi --log-file -
+web: gunicorn xltn.wsgi --log-file -
