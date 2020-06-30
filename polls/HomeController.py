@@ -111,17 +111,17 @@ def parseSpace(textData):
 def search(request):  # q = a
     # print()
     key = request.GET['q']
-    l1 = crw.crawlLinkFromVnexpress(key)
     l2 = crw.crawlLinkFromZing(key)
+    l1 = crw.crawlLinkFromVnexpress(key)
     l3 = crw.crawlLinkFromBaomoi(key)
     l4 = crw.crawlLinkFromSoha(key)
 
     # textData = soup.body.article.text
     # textData = parseSpace(textData)
-    l = l1 + l2 + l3 + l4
+    l = l2 + l1 + l3 + l4
     l2 = []
     for x in l:
-        l2.append({'name': x, 'link': x})
+        l2.append({'name': x, 'link': x, 'source':'Zing.vn'})
     return JsonResponse(l2, safe=False)
 
 def crawDataFromLink(link):
@@ -131,10 +131,12 @@ def crawDataFromLink(link):
     if 'zingnews.vn' in link:
         print('Zing data')
         return crwd.crawlDataFromZing(link)
-
+    else:
+        return 'Tính năng đọc cho bao nay đang phát triển'
 @csrf_exempt
 def crawlPost(request):
-    link = request.POST.get('link')
+    link = request.POST.get('link','')
+    print(link)
     textData = crawDataFromLink(link)
     # textData = soup.body.article.text
     # textData = parseSpace(textData)
@@ -143,4 +145,16 @@ def crawlPost(request):
     # if description is not None:
     #     descriptionData = parseSpace(description.text)
     #     textData = descriptionData + textData
-    return JsonResponse({'data': textData}, safe=False)
+    url = 'https://api.fpt.ai/hmi/tts/v5'
+    payload = textData[0:400]
+    headers = {
+        'api-key': 'KiiCzOHE7soC64lxsczaqZj2GH4B2cjg',
+        'speed': '',
+        'voice': 'banmai'
+    }
+
+    response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
+
+    print(response.json()['async'])
+
+    return JsonResponse({'link': response.json()['async']}, safe=False)

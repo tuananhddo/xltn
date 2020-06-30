@@ -8,7 +8,7 @@ def crawlLinkFromVnexpress(key):
     listLink = []
     listPost = soup.select('#result_search article[data-url]')
     for post in listPost:
-        print(post.attrs["data-url"])
+        # print(post.attrs["data-url"])
         listLink.append(post.attrs["data-url"])
     return listLink
 
@@ -24,7 +24,7 @@ def crawlLinkFromZing(key):
     listPost = soup.select('#search-result > div.section-content .article-item .article-thumbnail a[href]')
     # print(listPost)
     for post in listPost:
-        print(base_url_zing + post.attrs['href'])
+        # print(base_url_zing + post.attrs['href'])
         listLink.append(base_url_zing + post.attrs['href'])
     return listLink
 
@@ -39,7 +39,7 @@ def crawlLinkFromBaomoi(key):
     # print(soup)
     listPost = soup.select('body .timeline.loadmore .story .story__heading a')
     for post in listPost:
-        print(base_url_baomoi + post.attrs['href'])
+        # print(base_url_baomoi + post.attrs['href'])
         listLink.append(base_url_baomoi + post.attrs['href'])
 
     return listLink
