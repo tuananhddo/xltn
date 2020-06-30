@@ -136,6 +136,7 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL ='/'
 
 LOGOUT_REDIRECT_URL ='/'
-
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 # SESSION AGE 20 Minutes
 SESSION_COOKIE_AGE = 40 * 60
