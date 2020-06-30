@@ -18,7 +18,6 @@ decorator==4.4.0
 defusedxml==0.6.0
 Django==2.2.3
 entrypoints==0.3
-GDAL==2.4.1
 hyperlink==19.0.0
 idna==2.8
 incremental==17.5.0
