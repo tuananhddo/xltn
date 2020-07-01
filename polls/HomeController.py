@@ -123,36 +123,35 @@ def search(request):  # q = a
     return JsonResponse(l, safe=False)
 
 def crawDataFromLink(link):
+    default_message = 'Chưa hỗ trợ tính năng đọc cho báo này'
     if 'soha.vn' in link:
-        print('Soha data')
+        print('Crawl Data: SOHA')
         return crwd.crawlDataFromSoha(link)
     if 'zingnews.vn' in link:
-        print('Zing data')
+        print('Crawl Data: ZING')
         return crwd.crawlDataFromZing(link)
+    if 'vnexpress.net' in link:
+        print('Crawl Data: VNEXPRESS')
+        return crwd.crawlDataFromVnexpress(link)
     else:
-        return 'Tính năng đọc cho bao nay đang phát triển'
+        return default_message
 @csrf_exempt
 def crawlPost(request):
     link = request.POST.get('link','')
     print(link)
     textData = crawDataFromLink(link)
-    # textData = soup.body.article.text
-    # textData = parseSpace(textData)
 
-    # description = soup.select_one('body > section.container section p.description')
-    # if description is not None:
-    #     descriptionData = parseSpace(description.text)
-    #     textData = descriptionData + textData
-    url = 'https://api.fpt.ai/hmi/tts/v5'
-    payload = textData[0:400]
-    headers = {
-        'api-key': 'Jd4PinMSrPrTVnotcV8v5QmvxJwY8PgC',
-        'speed': '',
-        'voice': 'banmai'
-    }
+    # url = 'https://api.fpt.ai/hmi/tts/v5'
+    # payload = textData[0:400]
+    # headers = {
+    #     'api-key': 'Jd4PinMSrPrTVnotcV8v5QmvxJwY8PgC',
+    #     'speed': '',
+    #     'voice': 'banmai'
+    # }
+    #
+    # response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
+    #
+    # print(response.json()['async'])
 
-    response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
-
-    print(response.json()['async'])
-
-    return JsonResponse({'link': response.json()['async']}, safe=False)
+    # return JsonResponse({'link': response.json()['async']}, safe=False)
+    return JsonResponse({'link': textData}, safe=False)
