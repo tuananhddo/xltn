@@ -115,14 +115,12 @@ def search(request):  # q = a
     l1 = crw.crawlLinkFromVnexpress(key)
     l3 = crw.crawlLinkFromBaomoi(key)
     l4 = crw.crawlLinkFromSoha(key)
-
+    # l5 = crw
     # textData = soup.body.article.text
     # textData = parseSpace(textData)
     l = l2 + l1 + l3 + l4
     l2 = []
-    for x in l:
-        l2.append({'name': x, 'link': x, 'source':'Zing.vn'})
-    return JsonResponse(l2, safe=False)
+    return JsonResponse(l, safe=False)
 
 def crawDataFromLink(link):
     if 'soha.vn' in link:
