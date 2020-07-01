@@ -31,12 +31,11 @@ def crawlLinkFromZing(key):
     # print(listPost)
     for post in listPost:
         link = base_url_zing + post.select('.article-thumbnail a[href]')[0].attrs['href']
-        name = post.select('header p.article-title a')[0].string
+        name = ''.join(post.select('header p.article-title a')[0].findAll(text=True, recursive=True))
         extract_post = {}
         extract_post['link'] = link
         extract_post['name'] = name
         extract_post['source'] = 'Zing.vn'
-
         # print(base_url_zing + post.attrs['href'])
         listLink.append(extract_post)
     return listLink
