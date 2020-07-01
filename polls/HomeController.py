@@ -142,14 +142,14 @@ def crawlPost(request):
     textData = crawDataFromLink(link)
 
     url = 'https://api.fpt.ai/hmi/tts/v5'
-    payload = textData[0:800]
+    # payload = textData[0:800]
     headers = {
         'api-key': 'Jd4PinMSrPrTVnotcV8v5QmvxJwY8PgC',
         'speed': '',
         'voice': 'banmai'
     }
 
-    response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
+    response = requests.request('POST', url, data=textData.encode('utf-8'), headers=headers)
 
     print(response.json()['async'])
 

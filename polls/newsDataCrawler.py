@@ -39,7 +39,7 @@ def crawlDataFromVnexpress(link):
     title = soup.select('.title-detail')[0].string
     print(title)
     postText = []
-    postText.append(title)
+    # postText.append(title)
     for p in post:
         postData = p.findAll(text=True, recursive=True)
         postText = postText + postData + [' ']
