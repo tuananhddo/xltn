@@ -28,5 +28,8 @@ urlpatterns = [
     path('get/<str:id>', HomeController.indexGetText),
     path('search', HomeController.search),
     path('post', HomeController.crawlPost),
-
+    path('user'),
+    path('user/like-posts/list'),
+    path('user/like-posts/add'),
+    path('user/like-posts/remove')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
