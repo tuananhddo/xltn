@@ -27,7 +27,7 @@ def crawlDataFromSoha(link):
         postData = p.findAll(text=True, recursive=True)
         postText = postText + postData + [' ']
         # print(postData)
-    # print(''.join(postText))
+    print(''.join(postText))
     return ''.join(postText)
 
 def crawlDataFromVnexpress(link):
@@ -44,5 +44,5 @@ def crawlDataFromVnexpress(link):
         postData = p.findAll(text=True, recursive=True)
         postText = postText + postData + [' ']
         # print(postData)
-    # print(''.join(postText))
+    print(''.join(postText))
     return ''.join(postText)

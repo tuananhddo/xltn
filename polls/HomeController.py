@@ -142,16 +142,17 @@ def crawlPost(request):
     textData = crawDataFromLink(link)
 
     url = 'https://api.fpt.ai/hmi/tts/v5'
-    # payload = textData[0:800]
+    payload = textData[0:3000]
     headers = {
         'api-key': 'KRKN3xvXKpD3JLrYUN9gsyoAwGJBpOjl',
         'speed': '',
         'voice': 'banmai'
     }
 
-    response = requests.request('POST', url, data=textData.encode('utf-8'), headers=headers)
+    response = requests.request('POST', url, data=payload.encode('utf-8'), headers=headers)
 
-    print(response.json()['async'])
+    # print(response.json()['async'])
+    print(response.json())
 
     return JsonResponse({'link': response.json()['async']}, safe=False)
     # return JsonResponse({'link': textData}, safe=False)
